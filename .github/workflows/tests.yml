@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - uses: microsoft/playwright-github-action@v1
+
+      - name: Install dependencies
+
+      - name: Run tests (chromium)
+        run: pytest --browser chromium
+
+      - name: Run tests (firefox)
+        run: pytest --browser firefox
+
+      - name: Run tests (webkit)
+        run: pytest --browser webkit
